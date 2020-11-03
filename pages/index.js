@@ -8,6 +8,12 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://app.snipcart.com" />
+        <link rel="preconnect" href="https://cdn.snipcart.com" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.css"
+        />
       </Head>
 
       <main className={styles.main}>
@@ -16,8 +22,15 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
+          <a
+            className="snipcart-checkout snipcart-summary"
+            href="#"
+            style={{ textDecoration: "none" }}
+          >
+            <code className={styles.code}>pages/index.js</code>{" "}
+            <strong>Cart:</strong>{" "}
+            <span className="snipcart-total-price">$0.00</span>
+          </a>
         </p>
 
         <div className={styles.grid}>
@@ -27,9 +40,28 @@ export default function Home() {
                 <img src={product.image} alt={`Preview of ${product.title}`} />
                 <h3>{product.title}</h3>
                 <p>{product.description}</p>
+                {/* <p className={styles.description}>
+                  <a
+                    className="snipcart-checkout snipcart-summary"
+                    href="#"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <strong>Cart:</strong>{" "}
+                    <span className="snipcart-total-price">$0.00</span>
+                  </a>
+                </p> */}
                 <p>${product.price}</p>
                 <p>
-                  <button>Add to Cart</button>
+                  <button
+                    className="snipcart-add-item"
+                    data-item-id={product.id}
+                    data-item-image={product.image}
+                    data-item-name={product.title}
+                    data-item-url="/"
+                    data-item-price={product.price}
+                  >
+                    Add to Cart
+                  </button>
                 </p>
               </div>
             );
@@ -47,6 +79,15 @@ export default function Home() {
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
+      <script
+        async
+        src="https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.js"
+      />
+      <div
+        hidden
+        id="snipcart"
+        data-api-key="MTZkMWI1ODMtMDQ4My00NGUxLTkyMjctMTEyMGMyMDQ5ZTYyNjM3MzU2MjE0MzMxMTgxMjk2"
+      />
     </div>
   );
 }
